@@ -2,6 +2,7 @@ package com.byron.note;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
@@ -31,7 +32,7 @@ public class WelcomeActivity extends AbsActivity {
         // img_homeAD.setImageResource(R.drawable.guide_0);
         setContentView(img_homeAD);
 
-        new ProgressBarAsyncTask().execute(1000);
+        new ProgressBarAsyncTask().execute(500);
         ArrayList<TypeVo> list = TypeManager.getInstance().findAll();
         if (list == null || list.size() == 0) {
             TypeVo v = new TypeVo();
@@ -40,6 +41,12 @@ public class WelcomeActivity extends AbsActivity {
             v.setType_id(0);
             TypeManager.getInstance().insert(v);
         }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        }, 500);
     }
 
     public class ProgressBarAsyncTask extends AsyncTask<Integer, Void, String> {
